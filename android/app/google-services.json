@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "968236034335",
+    "project_id": "service_creed-60eba",
+    "storage_bucket": "service_creed-60eba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968236034335:android:a2e57bbfd288e33034a82a",
+        "android_client_info": {
+          "package_name": "com.example.service_creed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968236034335-7sklnq110esi7adh1nvk1v1tmqrr25nd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbTLO9613vRIzQ77dzt3Nvv07Z88Mzi9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968236034335-7sklnq110esi7adh1nvk1v1tmqrr25nd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
