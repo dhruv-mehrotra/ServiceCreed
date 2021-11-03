@@ -1,5 +1,5 @@
-import 'package:service_creed/ui/views/base_view.dart';
 import 'package:flutter/material.dart';
+import 'package:service_creed/ui/views/base_view.dart';
 import 'package:service_creed/viewmodels/Primary/primary_viewmodel.dart';
 
 class PrimaryPage extends StatelessWidget {

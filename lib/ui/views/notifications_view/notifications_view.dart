@@ -1,11 +1,11 @@
-import 'package:service_creed/constants/app_colours.dart';
-import 'package:service_creed/ui/views/base_view.dart';
-import 'package:service_creed/ui/views/notifications_view/widgets/add_meet_widget.dart';
-import 'package:service_creed/viewmodels/smp_group/smp_group_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:service_creed/constants/app_colours.dart';
+import 'package:service_creed/ui/views/base_view.dart';
+import 'package:service_creed/ui/views/notifications_view/widgets/add_meet_widget.dart';
+import 'package:service_creed/viewmodels/smp_group/smp_group_viewmodel.dart';
 
 class NotificationsPageWidget extends StatefulWidget {
   @override
@@ -109,7 +109,7 @@ Widget meetNotificationCard(String date, String time) {
       Container(
           height: 15.h,
           width: 16.w,
-          child: SvgPicture.asset('assets/icons/meet_card_calendar_icon.svg')),
+          child: Container()),
       RichText(
           text: TextSpan(
         text: date,
@@ -125,7 +125,7 @@ Widget meetNotificationCard(String date, String time) {
       Container(
           height: 16.h,
           width: 16.w,
-          child: SvgPicture.asset('assets/icons/meet_card_clock_icon.svg')),
+          child: Container()),
       RichText(
           text: TextSpan(
         text: time,

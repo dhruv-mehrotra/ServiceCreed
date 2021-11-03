@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:service_creed/ui/views/ServicesPage/home_view.dart';
 import 'package:service_creed/ui/views/myteam_view/smp_group.dart';
 import 'package:service_creed/ui/views/notifications_view/notifications_view.dart';
-import 'package:service_creed/ui/views/saved_posts_view/saved_posts_view.dart';
 import 'package:service_creed/ui/views/search_view/search_widget.dart';
 import 'package:service_creed/viewmodels/base_viewmodel.dart';
 
@@ -21,8 +20,7 @@ class PrimaryViewModel extends BaseViewModel {
 
   List<Widget> _pages = <Widget>[
     HomeView(),
-    SearchWidget(),
-    SavedPostsView(), //SavedQnsWidget(),
+    SearchWidget(), //SavedQnsWidget(),
     NotificationsPageWidget(), //NotificationPageWidget(),
     SmpGroupWidget(),
   ];
