@@ -21,7 +21,10 @@ Future<void> setupLocator() async {
   locator.registerFactory<RegisterViewModel>(() => RegisterViewModel());
   locator.registerFactory<PrimaryViewModel>(() => PrimaryViewModel());
   locator.registerFactory<ServicesViewModel>(() => ServicesViewModel());
+
   locator.registerFactory<ServiceProviderListViewModel>(
       () => ServiceProviderListViewModel());
   locator.registerFactory<ServicesListViewmodel>(() => ServicesListViewmodel());
+
+  locator.registerFactory(() => ServicesListViewmodel());
 }

@@ -11,6 +11,7 @@ class ServiceCreedRouter {
         return MaterialPageRoute(builder: (_) => PrimaryPage());
       case 'AuthPage':
         return MaterialPageRoute(builder: (_) => AuthPage());
+
       case 'login':
         return MaterialPageRoute(builder: (_) => LoginView());
       case 'post':
