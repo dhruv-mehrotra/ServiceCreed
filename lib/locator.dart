@@ -8,5 +8,5 @@ GetIt locator = GetIt.instance;
 void setupLocator() {
   locator.registerFactory<PrimaryViewModel>(() => PrimaryViewModel());
   locator.registerFactory<ServicesViewModel>(() => ServicesViewModel());
-  locator.registerFactory(() => ServicesListViewmodel());
+  locator.registerFactory<ServicesListViewmodel>(() => ServicesListViewmodel());
 }

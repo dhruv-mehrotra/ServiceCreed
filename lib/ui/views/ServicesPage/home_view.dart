@@ -33,8 +33,7 @@ class HomeView extends StatelessWidget {
               child: SlideAnimation(
                 child: FadeInAnimation(
                   child: GridItem(
-                    label: category.label,
-                    assetPath: category.url,
+                    category: category,
                   ),
                 ),
               ),
