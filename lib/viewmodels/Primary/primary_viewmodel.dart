@@ -9,8 +9,11 @@ class PrimaryViewModel extends BaseViewModel {
   int _selectedIndex = 0;
 
   int get selectedIndex => _selectedIndex;
+
   List<Widget> get pages => _pages;
+
   List<String> get titles => _titles;
+
   List<Color> get backGroundColor => _colors;
 
   set selectedIndex(int index) {
