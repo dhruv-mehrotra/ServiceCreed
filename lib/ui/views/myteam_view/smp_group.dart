@@ -1,11 +1,11 @@
-import 'package:service_creed/constants/app_colours.dart';
-import 'package:service_creed/ui/views/base_view.dart';
-import 'package:service_creed/ui/views/notifications_view/notifications_view.dart';
-import 'package:service_creed/viewmodels/smp_group/smp_group_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:service_creed/constants/app_colours.dart';
+import 'package:service_creed/ui/views/base_view.dart';
+import 'package:service_creed/ui/views/notifications_view/notifications_view.dart';
+import 'package:service_creed/viewmodels/smp_group/smp_group_viewmodel.dart';
 
 class SmpGroupWidget extends StatefulWidget {
   @override
@@ -40,8 +40,7 @@ class _SmpGroupWidgetState extends State<SmpGroupWidget> {
                     SizedBox(
                       height: 82.h,
                       width: 82.w,
-                      child: SvgPicture.asset(
-                          'assets/icons/temporary_mentoricon.svg'),
+                      child: Container(),
                     ),
                     SizedBox(
                       width: 24.w,

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:service_creed/models/my_user_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:service_creed/models/my_user_model.dart';
 
 class AccessPair {
   AccessPair({this.refresh, this.access});

@@ -1,7 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:service_creed/models/post_model.dart';
 import 'package:service_creed/services/api/channeli_api.dart';
 import 'package:service_creed/services/utility_services.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseApi {
   FirebaseApi({this.uid});

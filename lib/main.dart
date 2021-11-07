@@ -19,12 +19,12 @@ Future main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // final user = Provider.of<FirebaseUser>(context);
     return MultiProvider(
       providers: [
         StreamProvider<FirebaseUser>.value(
-            initialData: null, value: AuthService().user),
-        //ChangeNotifierProvider(create: (context) => PostsProvider()),
+          initialData: null,
+          value: AuthService().user,
+        ),
       ],
       child: ScreenUtilInit(
         builder: () => MaterialApp(

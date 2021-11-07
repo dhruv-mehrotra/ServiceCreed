@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:service_creed/ui/views/auth_views/login_page.dart';
 import 'package:service_creed/ui/views/auth_views/sign_up.dart';
-import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key key}) : super(key: key);

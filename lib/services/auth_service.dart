@@ -1,7 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:service_creed/models/firebase_user_model.dart';
 import 'package:service_creed/services/api/channeli_api.dart';
 import 'package:service_creed/services/api/firebase_api.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;

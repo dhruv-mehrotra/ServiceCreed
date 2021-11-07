@@ -10,6 +10,6 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<FirebaseUser>(context);
 
-    return user == null ? AuthPage() : PrimaryPage(user: user);
+    return user == null ? AuthPage() : PrimaryPage();
   }
 }

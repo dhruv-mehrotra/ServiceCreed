@@ -1,21 +1,11 @@
-import 'package:service_creed/constants/app_colours.dart';
-import 'package:service_creed/models/post_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_svg/svg.dart';
 
-import 'expanded_postview.dart';
+import 'expanded_serviceview.dart';
 
-class FeedPostCard extends StatelessWidget {
-  final Post post;
-
-  const FeedPostCard({
-    @required this.post,
-    Key key,
-  }) : super(key: key);
-
+class ServicePostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => buildPost(context);
 
@@ -24,7 +14,7 @@ class FeedPostCard extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ExpandedPostviewWidget(post)))
+                  builder: (context) => ExpandedSeviceviewWidget()))
         },
         onLongPress: null,
         child: Card(
@@ -43,29 +33,21 @@ class FeedPostCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        post.question,
+                        "",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: primaryTextColor,
+                          color: Colors.black,
                           fontSize: 25.sp,
                         ),
                       ),
                       SizedBox(
                         height: 10.h,
                       ),
-                      _feedAnswerCard("Default Mentor",
-                          "The key is to overcome what's called functional fixedness. You look at that box and you see it only as a receptacle for the tacks. But it can also have this other function, as a platform for the candle. The candle problem."),
+                      _serviceInfoCard(),
                       SizedBox(height: 10.h),
-                      Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                        Text(
-                          DateFormat('yyyy-MM-dd – kk:mm')
-                              .format(post.createdTime),
-                          style: TextStyle(
-                            color: primaryTextColor,
-                            fontSize: 8,
-                          ),
-                        ),
-                      ]),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: []),
                     ],
                   ),
                 ),
@@ -76,7 +58,7 @@ class FeedPostCard extends StatelessWidget {
       );
 }
 
-Widget _feedAnswerCard(String mentorName, String answerText) {
+Widget _serviceInfoCard() {
   return IntrinsicHeight(
     child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -89,7 +71,7 @@ Widget _feedAnswerCard(String mentorName, String answerText) {
             SizedBox(
               height: 19.h,
               width: 19.w,
-              child: SvgPicture.asset('assets/icons/temporary_mentoricon.svg'),
+              child: Container(),
             ),
             SizedBox(
               width: 7.w,
@@ -97,7 +79,7 @@ Widget _feedAnswerCard(String mentorName, String answerText) {
             RichText(
                 overflow: TextOverflow.ellipsis,
                 text: TextSpan(
-                  text: mentorName,
+                  text: "",
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 12.sp,
@@ -112,11 +94,11 @@ Widget _feedAnswerCard(String mentorName, String answerText) {
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               text: TextSpan(
-                text: answerText,
+                text: "",
                 style: TextStyle(
                   fontWeight: FontWeight.w300,
                   fontSize: 16.sp,
-                  color: primaryTextColor,
+                  color: Colors.black,
                 ),
               )),
           SizedBox(
