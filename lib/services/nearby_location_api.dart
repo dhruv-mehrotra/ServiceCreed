@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:service_creed/constants/secrets.dart';
 import 'package:service_creed/models/geopoint.dart';
 import 'package:service_creed/models/nearby.dart';
 
@@ -22,9 +21,7 @@ class NearcyLocationApi {
       double radius,
       String type,
       String keyword}) async {
-    Uri url =
-        'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${userLocation.latitude},${userLocation.longitude}&radius=$radius&type=$type&keyword=$keyword&key=$GOOGLE_PLACES_API_KEY'
-            as Uri;
+    Uri url = 'https://api.npoint.io/8495bf05366b98dbc1e8' as Uri;
     http.Response response = await http.get(url);
     final values = jsonDecode(response.body);
     final List result = values['results'];

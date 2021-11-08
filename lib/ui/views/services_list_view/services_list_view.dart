@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:service_creed/ui/views/base_view.dart';
 import 'package:service_creed/ui/views/services_list_view/widgets/service_category_view.dart';
 import 'package:service_creed/viewmodels/services_list/services_list_viewmodel.dart';

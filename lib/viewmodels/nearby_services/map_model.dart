@@ -9,7 +9,7 @@ class MapModel extends ChangeNotifier {
   GoogleMapController _mapController;
   List<LatLng> users = [];
 
-  LatLng userPosition = LatLng(40.71427, -74.00597);
+  LatLng userPosition = LatLng(-33.8587323, 151.2100055);
   List<Nearby> nearbyLocations = <Nearby>[];
 
   GoogleMapController get mapController => _mapController;
@@ -18,40 +18,44 @@ class MapModel extends ChangeNotifier {
 
   Set<Marker> get markers => _markers;
 
-  MapModel(String service);
+  MapModel(String service) {
+    getUserPosition();
+  }
 
   Future<void> addAllUserMakerToMap() async {
     await _addMarkerToMap(
-      markerPosition: GeoPoint(40.71427, -74.00597),
+      markerPosition: GeoPoint(-33.8587323, 151.2100055),
     );
-    users.add(LatLng(40.71427, -74.00597));
+    users.add(LatLng(-33.8587323, 151.2100055));
   }
 
   Future<void> getUserPosition() async {
-    GeoPoint point = LatLng(40.71427, -74.00597) as GeoPoint;
-    userPosition = LatLng(40.71427, -74.00597);
+    print("getUserPosition called");
+    GeoPoint point = GeoPoint(-33.8587323, 151.2100055);
+    userPosition = LatLng(-33.8587323, 151.2100055);
     List<Placemark> placeMarks =
-        await placemarkFromCoordinates(40.71427, -74.00597);
+        await placemarkFromCoordinates(-33.8587323, 151.2100055);
     Placemark marks = placeMarks[0];
     _addMarkerToMap(
-      markerPosition: point,
-    );
+        markerPosition: point,
+        placeName: '${marks.locality}, ${marks.administrativeArea}');
+    print("getUserPosition concluded");
   }
 
-  Future<void> _addMarkerToMap({GeoPoint markerPosition}) async {
+  Future<void> _addMarkerToMap(
+      {GeoPoint markerPosition, String placeName}) async {
+    print("_addMarkerToMap called");
     try {
       List<Placemark> placeMarks =
-          await placemarkFromCoordinates(40.71427, -74.00597);
+          await placemarkFromCoordinates(-33.8587323, 151.2100055);
       Placemark marks = placeMarks[0];
       var points = LatLng(markerPosition.latitude, markerPosition.longitude);
       _markers.add(Marker(
           position: points,
           onTap: () async {
-            final List<Nearby> result =
-                await NearcyLocationApi.instance.getNearby(
-                    userLocation:
-                        // markerPosition,
-                        GeoPoint(4.8119283, 7.046236272219636),
+            final List<Nearby> result = await NearcyLocationApi.instance
+                .getNearby(
+                    userLocation: GeoPoint(-33.8587323, 151.2100055),
                     radius: 10000,
                     type: 'restaurants',
                     keyword: '');
@@ -60,10 +64,12 @@ class MapModel extends ChangeNotifier {
             notifyListeners();
           },
           infoWindow: InfoWindow(
+            title: placeName,
             snippet:
                 "${marks.name},${marks.locality}, ${marks.administrativeArea}",
           ),
-          icon: BitmapDescriptor.defaultMarker));
+          icon: BitmapDescriptor.defaultMarker,
+          markerId: MarkerId(placeName)));
     } catch (e) {
       print(e);
     }

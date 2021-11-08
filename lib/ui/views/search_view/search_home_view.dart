@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:service_creed/ui/views/search_view/map_view.dart';
-import 'package:service_creed/viewmodels/nearby_services/user_model.dart';
 
 class SearchHomeView extends StatelessWidget {
   @override
