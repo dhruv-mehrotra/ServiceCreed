@@ -21,7 +21,8 @@ class NearcyLocationApi {
       double radius,
       String type,
       String keyword}) async {
-    Uri url = 'https://api.npoint.io/8495bf05366b98dbc1e8' as Uri;
+    print("GetNearby Called");
+    var url = Uri.parse('https://api.npoint.io/8495bf05366b98dbc1e8');
     http.Response response = await http.get(url);
     final values = jsonDecode(response.body);
     final List result = values['results'];

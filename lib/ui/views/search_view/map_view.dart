@@ -38,7 +38,7 @@ class MapView extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 200,
+                    height: 250,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: mapModel.nearbyLocations.length,
