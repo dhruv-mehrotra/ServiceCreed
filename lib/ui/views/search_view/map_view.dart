@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:service_creed/viewmodels/nearby_services/map_model.dart';
-import 'package:service_creed/viewmodels/nearby_services/user_model.dart';
 
 class MapView extends StatelessWidget {
   final String service;
@@ -11,7 +10,6 @@ class MapView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final location = Provider.of<UserLocationModel>(context);
     return ChangeNotifierProvider(
       create: (_) => MapModel(service),
       builder: (context, snapshot) {
@@ -23,9 +21,7 @@ class MapView extends StatelessWidget {
                 GoogleMap(
                   mapType: MapType.normal,
                   initialCameraPosition: CameraPosition(
-                      target:  LatLng(40.71427, -74.00597),
-
-                      zoom: 10),
+                      target: LatLng(-33.8587323, 151.2100055), zoom: 10),
                   myLocationEnabled: true,
                   onMapCreated: mapModel.onMapCreate,
                   onCameraMove: mapModel.onCameraMoved,
