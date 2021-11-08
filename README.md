@@ -1,7 +1,28 @@
 # Service Creed
 
+## Setup Instructions
+- Clone the repo:
+    ```bash
+	git clone https://github.com/dhruv-mehrotra/ServiceCreed.git
+	cd ServiceCreed
+	```
+    
+- Install flutter sdk   
+    
+- Open the repo in an IDE like Android Studio or VS Code
+    click Open -> Flutter Project -> Service Creed
+    
+- Get Dev Dependencies
+    ```bash
+    flutter pub dev
+    ```
+- Run Project
+    ```bash
+    flutter run
+    ```
 
-Use of files
+
+## Use of files
 
     models -> All data models and response models
     enums -> All enums files
@@ -11,7 +32,7 @@ Use of files
     ui/components -> All view components like custom buttons, custom cards etc.
     viewmodels -> All viewmodels
 
-Structure code in this way:
+## Structure code in this way:
 
     // Inside widget class
     -- variables (private if possible)
