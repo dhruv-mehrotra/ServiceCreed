@@ -18,20 +18,6 @@ class UserLocationModel extends ChangeNotifier {
 
   HomeState get homeState => _homeState;
 
-  // Future<void> _fetchUsers() async {
-  //   _homeState = HomeState.Loading;
-  //   try {
-  //     await Future.delayed(Duration(seconds: 5));
-  //     final apiusers = await UserApi.instance.getAllUser();
-  //     users = apiusers;
-  //     _homeState = HomeState.Loaded;
-  //   } catch (e) {
-  //     message = '$e';
-  //     _homeState = HomeState.Error;
-  //   }
-  //   notifyListeners();
-  // }
-
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;

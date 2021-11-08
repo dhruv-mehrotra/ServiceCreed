@@ -6,15 +6,6 @@ class SearchHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Builder(builder: (context) {
-        //final location = Provider.of<UserLocationModel>(context);
-
-        // if (location.homeState == HomeState.Loading) {
-        //   return Center(child: CircularProgressIndicator());
-        // }
-        // if (location.homeState == HomeState.Error) {
-        //   return Center(child: Text('An Error Occured'));
-        // }a
-        //final position = location.position;
         return ListView.builder(
           itemCount: 6,
           itemBuilder: (context, index) {
