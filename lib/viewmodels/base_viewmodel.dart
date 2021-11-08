@@ -1,5 +1,5 @@
-import 'package:service_creed/enums/viewstate.dart';
 import 'package:flutter/foundation.dart';
+import 'package:service_creed/enums/viewstate.dart';
 import 'package:service_creed/locator.dart';
 import 'package:service_creed/services/local_storage_service.dart';
 
@@ -26,6 +26,7 @@ class BaseViewModel extends ChangeNotifier {
   }
 
   String get token => _localStorageService.token;
+
   void set token(String token) {
     _localStorageService.token = token;
     notifyListeners();
