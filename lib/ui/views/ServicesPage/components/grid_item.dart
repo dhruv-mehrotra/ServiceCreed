@@ -30,7 +30,7 @@ class GridItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                    image: AssetImage(category.url),
+                    image: NetworkImage(category.url),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -41,7 +41,7 @@ class GridItem extends StatelessWidget {
             height: 10,
           ),
           Text(
-            category.label,
+            '${category.id} ${category.label}',
           ),
         ],
       ),

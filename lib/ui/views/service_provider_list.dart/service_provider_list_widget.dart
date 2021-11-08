@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:service_creed/enums/viewstate.dart';
 import 'package:service_creed/models/service_model.dart';
 import 'package:service_creed/ui/views/base_view.dart';
 import 'package:service_creed/ui/views/services_list_view/widgets/expanded_serviceview.dart';
@@ -18,31 +19,35 @@ class ServiceProviderListWidget extends StatelessWidget {
           model.onModelReady(service),
       builder: (BuildContext context, ServiceProviderListViewModel model,
               Widget child) =>
-          Scaffold(
-        appBar: AppBar(
-          title: Text(service.serviceName),
-          centerTitle: true,
-        ),
-        body: ListView.builder(
-          padding: const EdgeInsets.all(10),
-          itemCount: model.serviceProviders.length,
-          itemBuilder: (BuildContext context, int index) => Card(
-            child: ListTile(
-              title: Text(
-                model.serviceProviders[index].name,
-              ),
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => ExpandedSeviceviewWidget(
-                    serviceProvider: model.serviceProviders[index],
+          model.state == ViewState.Idle
+              ? Scaffold(
+                  appBar: AppBar(
+                    title: Text(service.serviceName),
+                    centerTitle: true,
                   ),
+                  body: ListView.builder(
+                    padding: const EdgeInsets.all(10),
+                    itemCount: model.serviceProviders.length,
+                    itemBuilder: (BuildContext context, int index) => Card(
+                      child: ListTile(
+                        title: Text(
+                          model.serviceProviders[index].fullName,
+                        ),
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => ExpandedSeviceviewWidget(
+                              serviceProvider: model.serviceProviders[index],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    physics: const BouncingScrollPhysics(),
+                  ),
+                )
+              : Center(
+                  child: CircularProgressIndicator(),
                 ),
-              ),
-            ),
-          ),
-          physics: const BouncingScrollPhysics(),
-        ),
-      ),
     );
   }
 }

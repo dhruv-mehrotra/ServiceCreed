@@ -1,109 +1,166 @@
 import 'package:flutter/material.dart';
-import 'package:service_creed/services/auth_service.dart';
+import 'package:service_creed/enums/viewstate.dart';
+import 'package:service_creed/ui/views/auth_views/register_page.dart';
+import 'package:service_creed/ui/views/base_view.dart';
+import 'package:service_creed/ui/widgets/custom_text_field.dart';
+import 'package:service_creed/viewmodels/Auth/login_viewmodel.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key key}) : super(key: key);
+class LoginView extends StatefulWidget {
+  const LoginView({Key key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginViewState createState() => _LoginViewState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
-  final _auth = AuthService();
-
-  String _email, _pwd;
-
+class _LoginViewState extends State<LoginView> {
+  final _formkey = GlobalKey<FormState>();
+  bool _isHidden = true;
+  bool _keepSignedIn = false;
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
+    return BaseView<LoginViewModel>(
+      onModelReady: (model) => model.onModelReady(),
+      onModelDestroy: (model) => model.onModelDestroy(),
+      builder: (context, model, child) => GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: SafeArea(
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset('assets/images/top-right-loginPage.png'),
+                ),
+                _buildLoginForm(model),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Image.asset(
+                    'assets/images/bottom-left-loginPage.png',
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLoginForm(LoginViewModel model) {
+    return Padding(
+      padding: const EdgeInsets.all(40.0),
+      child: Form(
+        key: _formkey,
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            new SizedBox(
-              width: 100.0,
-              height: 100.0,
-              // TODO(Saumya): add child: new Image.asset("", height: 90.00, width: 90.00),
+            Text(
+              'Sign In',
+              style: TextStyle(fontSize: 30),
             ),
-            TextFormField(
-              onChanged: (value) {
-                _email = value;
-              },
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter your email';
-                } else
-                  return null;
-              },
+            SizedBox(height: 40),
+            _buildEmailTextField(model),
+            SizedBox(height: 20),
+            _buildPasswordTextField(model),
+            _buildKeepSignedInCheckBox(),
+            _buildCreateAccountButton(model),
+            SizedBox(height: 10),
+            _buildLoginButton(model, _keepSignedIn),
+          ],
+        ),
+      ),
+    );
+  }
 
-              style: TextStyle(color: Colors.teal),
-              // controller: emailController,
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                disabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                hintText: "Enter Your Email...",
-                hintStyle: TextStyle(
-                  fontStyle: FontStyle.italic,
-                ),
-                labelText: "Email",
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(),
-                  borderRadius: BorderRadius.circular(25.0),
-                ),
+  Widget _buildEmailTextField(LoginViewModel model) {
+    return CustomTextField(
+      model.emailController,
+      'Email',
+      'Enter your email',
+      Icons.email,
+    );
+  }
+
+  Widget _buildPasswordTextField(LoginViewModel model) {
+    return CustomTextField(
+      model.passwordController,
+      'Password',
+      'Enter your password',
+      Icons.lock,
+      isHidden: _isHidden,
+      suffix: IconButton(
+        icon: _isHidden ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+        onPressed: () {
+          setState(() {
+            _isHidden = !_isHidden;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget _buildKeepSignedInCheckBox() {
+    return CheckboxListTile(
+      contentPadding: EdgeInsets.zero,
+      activeColor: Colors.blue,
+      title: Text('Keep me signed in'),
+      value: _keepSignedIn,
+      onChanged: (value) {
+        setState(() {
+          _keepSignedIn = value;
+        });
+      },
+      controlAffinity: ListTileControlAffinity.leading,
+    );
+  }
+
+  Widget _buildCreateAccountButton(LoginViewModel model) {
+    return Align(
+      alignment: Alignment.center,
+      child: TextButton(
+        onPressed: () => Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+                builder: (BuildContext context) => RegisterPage())),
+        style: ButtonStyle(
+          overlayColor: MaterialStateProperty.all(Colors.transparent),
+        ),
+        child: Text(
+          "Don't have an account? Create one",
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLoginButton(LoginViewModel model, bool keepSignedIn) {
+    return Row(
+      children: [
+        Expanded(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.blue,
+              onSurface: Colors.blue.withOpacity(0.8),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
             ),
-            TextFormField(
-              onChanged: (value) {
-                _pwd = value;
-              },
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter your password';
-                } else
-                  return null;
-              },
-
-              style: TextStyle(),
-              // controller: passwordController,
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                hintText: "Enter Your Password...",
-                hintStyle: TextStyle(
-                  fontStyle: FontStyle.italic,
-                ),
-                border: new OutlineInputBorder(borderSide: new BorderSide()),
-                labelText: "Password",
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(),
-                  borderRadius: BorderRadius.circular(25.0),
-                ),
-              ),
+            onPressed: model.state == ViewState.Idle
+                ? (() async => _formkey.currentState.validate()
+                    ? await model.login(keepSignedIn).then((val) =>
+                        Navigator.of(context).pushReplacementNamed('/'))
+                    : null)
+                : null,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: model.state == ViewState.Idle
+                  ? Text('Log In')
+                  : Text('Loading...'),
             ),
-            ElevatedButton(
-              onPressed: () async {
-                if (_formKey.currentState.validate()) {
-                  dynamic result = await _auth.signInUsingEmail(_email, _pwd);
-                  if (result == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text(
-                            'Could not log in with the given credentials')));
-                  }
-                }
-              },
-              child: Text("Log in"),
-            ),
-          ]),
+          ),
+        ),
+      ],
     );
   }
 }
