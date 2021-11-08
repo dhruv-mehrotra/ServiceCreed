@@ -30,11 +30,6 @@ class PrimaryPage extends StatelessWidget {
               label: 'Walk-In-Service',
               backgroundColor: model.backGroundColor[1],
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              label: 'Profile',
-              backgroundColor: model.backGroundColor[2],
-            ),
           ],
         ),
         body: model.pages[model.selectedIndex],

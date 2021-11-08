@@ -4,6 +4,7 @@ import 'package:service_creed/services/api/services_api.dart';
 import 'package:service_creed/services/local_storage_service.dart';
 import 'package:service_creed/viewmodels/Auth/login_viewmodel.dart';
 import 'package:service_creed/viewmodels/Auth/register_viewmodel.dart';
+import 'package:service_creed/viewmodels/Payment/payment_viewmodel.dart';
 import 'package:service_creed/viewmodels/Primary/primary_viewmodel.dart';
 import 'package:service_creed/viewmodels/Services/services_viewmodel.dart';
 import 'package:service_creed/viewmodels/service_provider_list/service_provider_list_viewmodel.dart';
@@ -17,6 +18,7 @@ Future<void> setupLocator() async {
   );
   locator.registerSingleton(ServicesApi());
   locator.registerSingleton<AuthenticationApi>(AuthenticationApi());
+  locator.registerFactory<PaymentViewModel>(() => PaymentViewModel());
   locator.registerFactory<LoginViewModel>(() => LoginViewModel());
   locator.registerFactory<RegisterViewModel>(() => RegisterViewModel());
   locator.registerFactory<PrimaryViewModel>(() => PrimaryViewModel());
@@ -25,6 +27,4 @@ Future<void> setupLocator() async {
   locator.registerFactory<ServiceProviderListViewModel>(
       () => ServiceProviderListViewModel());
   locator.registerFactory<ServicesListViewmodel>(() => ServicesListViewmodel());
-
-  locator.registerFactory(() => ServicesListViewmodel());
 }

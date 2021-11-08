@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:service_creed/constants/secrets.dart';
 import 'package:service_creed/locator.dart';
 import 'package:service_creed/models/service_category.dart';
 import 'package:service_creed/models/service_model.dart';
@@ -10,8 +11,6 @@ import 'package:service_creed/services/local_storage_service.dart';
 class ServicesApi {
   final LocalStorageService _localStorageService =
       locator<LocalStorageService>();
-
-  static String BASE_URI = 'http://10.70.5.26:8000/servicecreed';
 
   Future<List<ServiceCategory>> getServiceCategories() async {
     String token = _localStorageService.token;

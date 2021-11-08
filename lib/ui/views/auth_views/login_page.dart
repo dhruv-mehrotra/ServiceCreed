@@ -65,7 +65,7 @@ class _LoginViewState extends State<LoginView> {
             _buildEmailTextField(model),
             SizedBox(height: 20),
             _buildPasswordTextField(model),
-            _buildKeepSignedInCheckBox(),
+            //_buildKeepSignedInCheckBox(),
             _buildCreateAccountButton(model),
             SizedBox(height: 10),
             _buildLoginButton(model, _keepSignedIn),
@@ -78,9 +78,9 @@ class _LoginViewState extends State<LoginView> {
   Widget _buildEmailTextField(LoginViewModel model) {
     return CustomTextField(
       model.emailController,
-      'Email',
-      'Enter your email',
-      Icons.email,
+      'UserName',
+      'Enter your username',
+      Icons.account_circle,
     );
   }
 

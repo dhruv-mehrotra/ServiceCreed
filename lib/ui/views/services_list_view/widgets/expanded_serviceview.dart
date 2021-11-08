@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:service_creed/models/service_provider_model.dart';
+import 'package:service_creed/ui/views/PaymentView/payment_view.dart';
 
 class ExpandedSeviceviewWidget extends StatelessWidget {
   final ServiceProvider serviceProvider;
@@ -21,7 +22,10 @@ class ExpandedSeviceviewWidget extends StatelessWidget {
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.3,
-            color: Colors.blue,
+            child: Image.network(
+              serviceProvider.profilePicture,
+              fit: BoxFit.fill,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
@@ -99,7 +103,11 @@ class ExpandedSeviceviewWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(32.0),
             child: MaterialButton(
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => PaymentView(),
+                ),
+              ),
               color: Colors.blue,
               child: Text('Book Now!!'),
               shape: RoundedRectangleBorder(

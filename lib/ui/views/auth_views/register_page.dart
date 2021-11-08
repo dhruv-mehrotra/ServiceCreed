@@ -181,21 +181,6 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  Widget _buildKeepSignedInCheckBox() {
-    return CheckboxListTile(
-      contentPadding: EdgeInsets.zero,
-      activeColor: Colors.blue,
-      title: Text('Keep me signed in'),
-      value: _keepSignedIn,
-      onChanged: (value) {
-        setState(() {
-          _keepSignedIn = value;
-        });
-      },
-      controlAffinity: ListTileControlAffinity.leading,
-    );
-  }
-
   Widget _buildRegisterButton(RegisterViewModel model, keepSignedIn) {
     return Row(
       children: [
