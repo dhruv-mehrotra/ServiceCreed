@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:service_creed/enums/viewstate.dart';
 import 'package:service_creed/models/service_category.dart';
 import 'package:service_creed/ui/views/base_view.dart';
 import 'package:service_creed/ui/views/services_list_view/widgets/service_post_card.dart';
@@ -24,15 +25,26 @@ class ServicesListWidget extends StatelessWidget {
             title: Text(category.label),
             centerTitle: true,
           ),
-          body: ListView.builder(
-            padding: const EdgeInsets.all(10),
-            itemCount: model.services.length,
-            itemBuilder: (BuildContext context, int index) => ServicePostCard(
-              service: model.services[index],
-            ),
-            physics: const BouncingScrollPhysics(),
-            shrinkWrap: true,
-          ),
+          body: model.state == ViewState.Idle
+              ? (model.services.length != 0
+                  ? ListView.builder(
+                      padding: const EdgeInsets.all(10),
+                      itemCount: model.services.length,
+                      itemBuilder: (BuildContext context, int index) =>
+                          ServicePostCard(
+                        service: model.services[index],
+                      ),
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                    )
+                  : Center(
+                      child: Text(
+                        'Currently there are no Services for this field',
+                      ),
+                    ))
+              : Center(
+                  child: CircularProgressIndicator(),
+                ),
         );
       },
     );

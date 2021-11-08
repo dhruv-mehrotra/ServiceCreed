@@ -1,12 +1,10 @@
-import 'dart:convert';
-
 import 'package:service_creed/models/app_user_model.dart';
 import 'package:service_creed/models/order_model.dart';
 import 'package:service_creed/models/service_model.dart';
 
 class ServiceProvider extends AppUser {
   final Service service;
-  final double cost;
+  final String cost;
   final List<Order> ordersRecieved;
 
   ServiceProvider({
@@ -20,7 +18,7 @@ class ServiceProvider extends AppUser {
     String profilePicture,
     List<Order> ordersReceived,
     Service service,
-    double cost,
+    String cost,
   })  : cost = cost,
         service = service,
         ordersRecieved = ordersReceived,
@@ -45,7 +43,7 @@ class ServiceProvider extends AppUser {
     String mobileNumber,
     String profilePicture,
     Service service,
-    double cost,
+    String cost,
     List<Order> ordersReceived,
   }) =>
       ServiceProvider(
@@ -62,11 +60,9 @@ class ServiceProvider extends AppUser {
       );
 
   ServiceProvider.fromJson(Map<String, dynamic> json)
-      : service = Service.fromJson(jsonDecode(json['service'])),
+      : service = Service.fromJson(json['services']),
         cost = json['cost'],
-        ordersRecieved = (jsonDecode(json['orders_received']) as List<dynamic>)
-            .map((dynamic order) => Order.fromJson(jsonDecode(order)))
-            .toList(),
+        ordersRecieved = [],
         super(
           id: json["id"],
           username: json["username"],
@@ -74,7 +70,7 @@ class ServiceProvider extends AppUser {
           email: json["email"],
           password: json["password"],
           address: json["address"],
-          mobileNumber: json["mobile_number"],
+          mobileNumber: json["mobileNumber"],
           profilePicture: json["profilePicture"],
         );
 
@@ -82,7 +78,6 @@ class ServiceProvider extends AppUser {
     return <String, dynamic>{
       'service': service,
       'cost': cost,
-      'orders_recieved': ordersRecieved,
       'id': id,
       'username': username,
       'fullname': fullName,

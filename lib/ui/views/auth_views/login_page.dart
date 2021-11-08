@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:service_creed/enums/viewstate.dart';
 import 'package:service_creed/ui/views/auth_views/register_page.dart';
 import 'package:service_creed/ui/views/base_view.dart';
 import 'package:service_creed/ui/widgets/custom_text_field.dart';
@@ -80,7 +81,6 @@ class _LoginViewState extends State<LoginView> {
       'Email',
       'Enter your email',
       Icons.email,
-      validator: model.emailValidator,
     );
   }
 
@@ -91,7 +91,6 @@ class _LoginViewState extends State<LoginView> {
       'Enter your password',
       Icons.lock,
       isHidden: _isHidden,
-      validator: model.passwordValidator,
       suffix: IconButton(
         icon: _isHidden ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
         onPressed: () {
@@ -142,17 +141,22 @@ class _LoginViewState extends State<LoginView> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               primary: Colors.blue,
-              //textStyle: AppTheme.button,
+              onSurface: Colors.blue.withOpacity(0.8),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
             ),
-            onPressed: () => _formkey.currentState.validate()
-                ? model.login(keepSignedIn)
+            onPressed: model.state == ViewState.Idle
+                ? (() async => _formkey.currentState.validate()
+                    ? await model.login(keepSignedIn).then((val) =>
+                        Navigator.of(context).pushReplacementNamed('/'))
+                    : null)
                 : null,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Text('Log In'),
+              child: model.state == ViewState.Idle
+                  ? Text('Log In')
+                  : Text('Loading...'),
             ),
           ),
         ),

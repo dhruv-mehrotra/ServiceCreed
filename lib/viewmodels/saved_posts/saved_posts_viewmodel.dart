@@ -1,5 +1,4 @@
 import 'package:service_creed/models/post_model.dart';
-import 'package:service_creed/services/api/firebase_api.dart';
 import 'package:service_creed/viewmodels/base_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -15,7 +14,7 @@ class SavedPostsViewModel extends BaseViewModel {
         notifyListeners();
       });
 
-  void addPost(Post post) {
-    FirebaseApi.createPost(post);
-  }
+  // void addPost(Post post) {
+  //   FirebaseApi.createPost(post);
+  // }
 }

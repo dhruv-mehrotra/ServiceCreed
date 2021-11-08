@@ -1,91 +1,30 @@
+import 'package:flutter/material.dart';
+import 'package:service_creed/enums/viewstate.dart';
+import 'package:service_creed/locator.dart';
 import 'package:service_creed/models/service_category.dart';
 import 'package:service_creed/models/service_model.dart';
+import 'package:service_creed/services/api/services_api.dart';
 import 'package:service_creed/viewmodels/base_viewmodel.dart';
 
 class ServicesListViewmodel extends BaseViewModel {
-  ServiceCategory _category;
+  ServicesApi _servicesApi = locator<ServicesApi>();
+  List<Service> _services;
 
-  List<Service> get services => <Service>[
-        Service(
-          serviceId: 1,
-          serviceName: 'Some Service',
-          category: _category,
-          description: 'Somedescription',
-          serviceImage: '',
-        ),
-        Service(
-          serviceId: 1,
-          serviceName: 'Some Service',
-          category: _category,
-          description: 'Some description',
-          serviceImage: '',
-        ),
-        Service(
-          serviceId: 1,
-          serviceName: 'Some Service',
-          category: _category,
-          description: 'Some description',
-          serviceImage: '',
-        ),
-        Service(
-          serviceId: 1,
-          serviceName: 'Some Service',
-          category: _category,
-          description: 'Some description',
-          serviceImage: '',
-        ),
-        Service(
-          serviceId: 1,
-          serviceName: 'Some Service',
-          category: _category,
-          description: 'Some description',
-          serviceImage: '',
-        ),
-        Service(
-          serviceId: 1,
-          serviceName: 'Some Service',
-          category: _category,
-          description: 'Some description',
-          serviceImage: '',
-        ),
-        Service(
-          serviceId: 1,
-          serviceName: 'Some Service',
-          category: _category,
-          description: 'Some description',
-          serviceImage: '',
-        ),
-        Service(
-          serviceId: 1,
-          serviceName: 'Some Service',
-          category: _category,
-          description: 'Some description',
-          serviceImage: '',
-        ),
-        Service(
-          serviceId: 1,
-          serviceName: 'Some Service',
-          category: _category,
-          description: 'Some description',
-          serviceImage: '',
-        ),
-        Service(
-          serviceId: 1,
-          serviceName: 'Some Service',
-          category: _category,
-          description: 'Some description',
-          serviceImage: '',
-        ),
-        Service(
-          serviceId: 1,
-          serviceName: 'Some Service',
-          category: _category,
-          description: 'Some description',
-          serviceImage: '',
-        ),
-      ];
+  set services(List<Service> services) {
+    _services = services;
+    notifyListeners();
+  }
 
-  void onModelReady(ServiceCategory category) {
-    _category = category;
+  List<Service> get services => _services;
+
+  void onModelReady(ServiceCategory category) async {
+    try {
+      setState(ViewState.Busy);
+      services = await _servicesApi.getService(category.id);
+      debugPrint('success');
+      setState(ViewState.Idle);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }
