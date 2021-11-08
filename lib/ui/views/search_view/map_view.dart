@@ -23,7 +23,7 @@ class MapView extends StatelessWidget {
                 GoogleMap(
                   mapType: MapType.normal,
                   initialCameraPosition: CameraPosition(
-                      target:  LatLng(29.457200, -164.299000),
+                      target:  LatLng(40.71427, -74.00597),
 
                       zoom: 10),
                   myLocationEnabled: true,
