@@ -142,7 +142,7 @@ class ExpandedSeviceviewWidget extends StatelessWidget {
                         ),
                         children: [
                           TextSpan(
-                            text: serviceProvider.name,
+                            text: serviceProvider.fullName,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,

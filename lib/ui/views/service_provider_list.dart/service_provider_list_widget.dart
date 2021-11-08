@@ -29,7 +29,7 @@ class ServiceProviderListWidget extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) => Card(
             child: ListTile(
               title: Text(
-                model.serviceProviders[index].name,
+                model.serviceProviders[index].fullName,
               ),
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
