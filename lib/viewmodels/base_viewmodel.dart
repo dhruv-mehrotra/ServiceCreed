@@ -1,5 +1,5 @@
-import 'package:service_creed/enums/viewstate.dart';
 import 'package:flutter/foundation.dart';
+import 'package:service_creed/enums/viewstate.dart';
 
 /// for all the model state management logic
 
