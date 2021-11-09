@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:service_creed/constants/secrets.dart';
 
 class AuthenticationApi {
-  static String BASE_URI = 'http://10.70.5.26:8000/servicecreed';
 
   Future<String> login(String username, String password) async {
     var response = await http.post(
